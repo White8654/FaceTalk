@@ -509,7 +509,7 @@ const MyChats = ({ fetchAgain }) => {
               transition: "all 0.5s ease-out",
             }}
             borderRadius="50"
-            w="100%"
+            w="99%"
           >
             <i className="fas fa-search"></i>
             <Text d={{ base: "none", md: "flex" }} px={4}>
