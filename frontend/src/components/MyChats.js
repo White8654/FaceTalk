@@ -520,7 +520,12 @@ const MyChats = ({ fetchAgain }) => {
 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent width="40%" height="60%" mx="auto" border="1px">
+          <ModalContent
+            width={{ base: "90%", md: "40%" }}
+            height="60%"
+            mx="auto"
+            border="1px"
+          >
             <ModalHeader borderBottomWidth="1px" bg="#333333">
               <Text color="white">Search Users</Text>
             </ModalHeader>
