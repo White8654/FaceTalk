@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon backend/server.js",
-    "server": "nodemon backend/server.js"
+    "server": "nodemon backend/server.js",
+    "build": "npm i"
   },
   "keywords": [
     "mern",
