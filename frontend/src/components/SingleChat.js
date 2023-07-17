@@ -45,6 +45,7 @@ import {
 import { color } from "framer-motion";
 //import { useToast } from "@chakra-ui/toast";
 const ENDPOINT = "http://localhost:5000";
+
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -262,7 +263,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         }
       } else {
         setMessages([...messages, newMessageRecieved]);
-        console.log(messages);
+        //console.log(messages);
       }
     });
   });
@@ -354,7 +355,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   //this.refs.nameInput.getInputDOMNode().focus();
 
   return (
-    <Box w="100%" h={"93%"}>
+    <Box w="100%" h={"90%"}>
       {" "}
       {emoji != 0 && <EmojiPicker />}
       {details && <Modalforcall />}
@@ -391,8 +392,25 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         px={3}
                         user={getSenderFull(user, selectedChat.users)}
                       />
-                      <Box marginRight="8px" /> {/* Add the spacing here */}
-                      {getSender(user, selectedChat.users).toUpperCase()}
+                      <Box display={"flex"} flexDir={"column"}>
+                        {/* Add the spacing here */}
+                        {getSender(user, selectedChat.users)}
+                        {istyping ? (
+                          <Text color={"white"} fontSize={"sm"}>
+                            Typing...
+                          </Text>
+                        ) : getSenderFull(user, selectedChat.users) &&
+                          getSenderFull(user, selectedChat.users).isOnline ===
+                            true ? (
+                          <Text color={"white"} fontSize={"sm"}>
+                            Online
+                          </Text>
+                        ) : (
+                          <Text color={"white"} fontSize={"sm"}>
+                            Offline
+                          </Text>
+                        )}
+                      </Box>
                     </>
                   ) : (
                     <>
@@ -671,18 +689,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               isRequired
               mt={3}
             >
-              {istyping ? (
-                <div>
-                  <Lottie
-                    options={defaultOptions}
-                    // height={50}
-                    width={70}
-                    style={{ marginBottom: 15, marginLeft: 0 }}
-                  />
-                </div>
-              ) : (
-                <></>
-              )}
               <div style={{ display: "flex", alignItems: "center" }}>
                 <input
                   id="input1"
@@ -710,7 +716,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   style={{
                     color: "white",
                     position: "absolute",
-                    left: "10px",
+                    left: "5px",
                     top: "50%",
                     transform: "translateY(-50%)",
                   }}
