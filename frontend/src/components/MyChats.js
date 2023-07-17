@@ -492,7 +492,9 @@ const MyChats = ({ fetchAgain }) => {
         p={"10px"}
         borderTop="3px solid #333333"
         borderBottom="3px solid #333333"
-        //alignItems={"center"}
+        display={"flex"}
+        //flexDir={"column"}
+        alignItems={"center"}
         //justifyContent={"center"}
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
@@ -501,7 +503,7 @@ const MyChats = ({ fetchAgain }) => {
             onClick={onOpen}
             fontFamily="Roboto"
             color="white"
-            marginTop={"4px"}
+            //marginTop={"4px"}
             bg="#333333"
             _hover={{
               color: "white",
@@ -511,7 +513,6 @@ const MyChats = ({ fetchAgain }) => {
             borderRadius="50"
             w="100%"
           >
-            <i className="fas fa-search"></i>
             <Text d={{ base: "none", md: "flex" }} px={4}>
               Search User
             </Text>
