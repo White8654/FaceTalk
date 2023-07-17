@@ -52,7 +52,7 @@ import { Effect } from "react-notification-badge";
 
 import UserListItem from "./userAvatar/UserListItem";
 import styled from "styled-components";
-const ENDPOINT = "https://facetalk.onrender.com/";
+const ENDPOINT = "https://facetalk-production.up.railway.app/";
 //const ENDPOINT = "http://localhost:5000";
 
 var socket;
