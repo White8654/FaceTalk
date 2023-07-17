@@ -39,7 +39,7 @@ const ProfileModal = ({ user, children }) => {
         isCentered
       >
         <ModalOverlay bg="rgba(0, 0, 0, 0.8)" />
-        <ModalContent h="580px" bg="gray.800" color="white">
+        <ModalContent bg="gray.800" color="white">
           <ModalHeader
             fontSize="40px"
             fontFamily="Roboto"
