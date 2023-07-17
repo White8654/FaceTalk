@@ -62,18 +62,21 @@ const ProfileModal = ({ user, children }) => {
               //onClick={() => setSelectedAvatar(index)}
             />
             <Text
-              fontSize={{ base: "28px", md: "30px" }}
-              fontFamily="Work sans"
+              fontSize={{ base: "15px", md: "20px" }}
+              fontFamily="Roboto"
               alignSelf={"flex-start"}
+              display={"flex"}
             >
-              Email: {user && user.email}
+              <Text fontWeight={"extrabold"}>Email:</Text> {user && user.email}
             </Text>
             <Text
-              fontSize={{ base: "28px", md: "30px" }}
-              fontFamily="Work sans"
+              fontSize={{ base: "15px", md: "20px" }}
+              fontFamily="Roboto"
               alignSelf={"flex-start"}
+              display={"flex"}
             >
-              About: {user && user.about}
+              <Text fontWeight={"extrabold"}>About:</Text>
+              {user && user.about}
             </Text>
           </ModalBody>
         </ModalContent>

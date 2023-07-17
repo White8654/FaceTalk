@@ -21,6 +21,7 @@ const Signup = () => {
   const [oauth, setoAuth] = useState();
 
   const [password, setPassword] = useState();
+  const api = "https://api.quotable.io/quotes/random";
 
   const submitHandler = async () => {
     if (!name || !email || !password) {
@@ -36,6 +37,10 @@ const Signup = () => {
     }
 
     console.log(name, email, password);
+    const quote = await axios.get(`${api}`);
+    console.log(quote);
+    const about = quote.data[0].content;
+    console.log(about);
     try {
       const config = {
         headers: {
@@ -48,6 +53,7 @@ const Signup = () => {
           name,
           email,
           password,
+          about,
         },
         config
       );
