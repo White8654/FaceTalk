@@ -2,7 +2,7 @@
   "name": "frontend",
   "author": "Sohan Mahanta",
   "version": "0.1.0",
-  "proxy": "https://facetalk.onrender.com/",
+  "proxy": "http://127.0.0.1:5000",
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
