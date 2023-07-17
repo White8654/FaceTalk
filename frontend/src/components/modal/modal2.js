@@ -6,7 +6,7 @@ import io from "socket.io-client";
 import { ChatState } from "../../Context/ChatProvider";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-const ENDPOINT = "https://facetalk.onrender.com/";
+const ENDPOINT = "http://localhost:5000";
 var socket;
 
 const Modal3 = () => {

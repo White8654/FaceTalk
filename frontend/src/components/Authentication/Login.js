@@ -9,14 +9,19 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Flex, Box, Image } from "@chakra-ui/react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
 
 const Login = () => {
   const toast = useToast();
   const history = useNavigate();
 
   const [email, setEmail] = useState();
+  const [oemail, setoEmail] = useState();
 
   const [password, setPassword] = useState();
+  const [opassword, setoPassword] = useState();
 
   const submitHandler = async () => {
     if (!email || !password) {
@@ -70,6 +75,17 @@ const Login = () => {
     }
   };
 
+  const handleGoogleLoginSuccess = (credentialResponse) => {
+    const details = jwt_decode(credentialResponse.credential);
+    console.log(details);
+    //setName(details.given_name + " " + details.family_name);
+    setEmail(details.email);
+    setPassword(details.sub);
+    if (email && password) {
+      submitHandler();
+    }
+  };
+
   // document.getElementById("input").addEventListener("keyup", function (event) {
   //   // Number 13 is the "Enter" key on the keyboard
   //   if (event.keyCode === 13) {
@@ -115,35 +131,14 @@ const Login = () => {
         id="input"
       />
       <Box mb={3} mt={3} display="flex" justifyContent={"center"}>
-        Login with
-        <a href="#">
-          <Image
-            boxSize="25px"
-            objectFit="cover"
-            ml={2}
-            mr={3}
-            src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-            alt="Google"
+        <GoogleOAuthProvider clientId="327729156972-u385vbit4lou36stv5f595ljhsdm1tpc.apps.googleusercontent.com">
+          <GoogleLogin
+            onSuccess={handleGoogleLoginSuccess}
+            onError={() => {
+              console.log("Login Failed");
+            }}
           />
-        </a>
-        <a href="#">
-          <Image
-            boxSize="25px"
-            objectFit="cover"
-            mr={1}
-            src="https://www.svgrepo.com/show/299471/facebook.svg"
-            alt="fb"
-          />
-        </a>
-        <a href="#">
-          <Image
-            boxSize="25px"
-            objectFit="cover"
-            ml={2}
-            src="https://www.svgrepo.com/show/439171/github.svg"
-            alt="fb"
-          />
-        </a>
+        </GoogleOAuthProvider>
       </Box>
       <Button id="Login" colorScheme="blue" mt={4} onClick={submitHandler}>
         Login

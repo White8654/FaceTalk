@@ -52,7 +52,7 @@ import { Effect } from "react-notification-badge";
 
 import UserListItem from "./userAvatar/UserListItem";
 import styled from "styled-components";
-const ENDPOINT = "https://facetalk.onrender.com/";
+const ENDPOINT = "http://localhost:5000";
 
 var socket;
 
@@ -509,7 +509,7 @@ const MyChats = ({ fetchAgain }) => {
               transition: "all 0.5s ease-out",
             }}
             borderRadius="50"
-            w="99%"
+            w="100%"
           >
             <i className="fas fa-search"></i>
             <Text d={{ base: "none", md: "flex" }} px={4}>

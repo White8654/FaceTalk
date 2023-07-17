@@ -44,7 +44,7 @@ import {
 } from "@chakra-ui/menu";
 import { color } from "framer-motion";
 //import { useToast } from "@chakra-ui/toast";
-const ENDPOINT = "https://facetalk.onrender.com/";
+const ENDPOINT = "http://localhost:5000";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {

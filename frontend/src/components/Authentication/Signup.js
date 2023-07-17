@@ -7,6 +7,10 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Flex, Box, Image } from "@chakra-ui/react";
+import GoogleAuth from "../../pages/googleAuth";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
 
 const Signup = () => {
   const toast = useToast();
@@ -14,6 +18,7 @@ const Signup = () => {
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
+  const [oauth, setoAuth] = useState();
 
   const [password, setPassword] = useState();
 
@@ -77,58 +82,81 @@ const Signup = () => {
   //     document.getElementById("Register").click();
   //   }
   // });
+  // const setAuth = (e) => {
+  //   setoAuth(1);
+  //   <GoogleAuth />;
+  // };
+
+  const handleGoogleLoginSuccess = (credentialResponse) => {
+    const details = jwt_decode(credentialResponse.credential);
+    console.log(details);
+    setName(details.given_name + " " + details.family_name);
+    setEmail(details.email);
+    setPassword(details.sub);
+    if (name && email && password) {
+      submitHandler();
+    }
+  };
 
   return (
-    <Flex
-      flexDirection="column"
-      bg={" #1f1f1f"}
-      p={6}
-      borderRadius={8}
-      color={"white"}
-    >
-      <Input
-        placeholder="Name"
-        type="text"
-        variant="filled"
-        mb={3}
-        color="rgba(255, 255, 255, 0.555)"
-        _hover={{ borderColor: "red", border: "1px solid" }}
-        bg={"none"}
-        border="none"
-        borderBottom="solid rgb(143, 143, 143) 2px"
-        borderRadius="none"
-        onChange={(e) => setName(e.target.value)}
-      />
-      <Input
-        placeholder="Email"
-        type="email"
-        variant="filled"
-        mb={3}
-        color="rgba(255, 255, 255, 0.555)"
-        _hover={{ borderColor: "red", border: "1px solid" }}
-        bg={"none"}
-        border="none"
-        borderBottom="solid rgb(143, 143, 143) 2px"
-        borderRadius="none"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <Input
-        placeholder="Password"
-        type="password"
-        variant="filled"
-        mb={3}
-        color="rgba(255, 255, 255, 0.555)"
-        _hover={{ borderColor: "red", border: "1px solid" }}
-        bg={"none"}
-        border="none"
-        borderBottom="solid rgb(143, 143, 143) 2px"
-        borderRadius="none"
-        onChange={(e) => setPassword(e.target.value)}
-        id="pass"
-      />
-      <Box mb={3} mt={3} display="flex" justifyContent={"center"}>
-        Sign in with
-        <a href="#">
+    <>
+      <Flex
+        flexDirection="column"
+        bg={" #1f1f1f"}
+        p={6}
+        borderRadius={8}
+        color={"white"}
+      >
+        <Input
+          placeholder="Name"
+          type="text"
+          variant="filled"
+          mb={3}
+          color="rgba(255, 255, 255, 0.555)"
+          _hover={{ borderColor: "red", border: "1px solid" }}
+          bg={"none"}
+          border="none"
+          borderBottom="solid rgb(143, 143, 143) 2px"
+          borderRadius="none"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          placeholder="Email"
+          type="email"
+          variant="filled"
+          mb={3}
+          color="rgba(255, 255, 255, 0.555)"
+          _hover={{ borderColor: "red", border: "1px solid" }}
+          bg={"none"}
+          border="none"
+          borderBottom="solid rgb(143, 143, 143) 2px"
+          borderRadius="none"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          placeholder="Password"
+          type="password"
+          variant="filled"
+          mb={3}
+          color="rgba(255, 255, 255, 0.555)"
+          _hover={{ borderColor: "red", border: "1px solid" }}
+          bg={"none"}
+          border="none"
+          borderBottom="solid rgb(143, 143, 143) 2px"
+          borderRadius="none"
+          onChange={(e) => setPassword(e.target.value)}
+          id="pass"
+        />
+        <Box mb={3} mt={3} display="flex" justifyContent={"center"}>
+          <GoogleOAuthProvider clientId="327729156972-u385vbit4lou36stv5f595ljhsdm1tpc.apps.googleusercontent.com">
+            <GoogleLogin
+              onSuccess={handleGoogleLoginSuccess}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+          </GoogleOAuthProvider>
+          {/* Sign in with
           <Image
             boxSize="25px"
             objectFit="cover"
@@ -136,9 +164,10 @@ const Signup = () => {
             mr={3}
             src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
             alt="Google"
-          />
-        </a>
-        <a href="#">
+            onClick={(e) => setAuth(e)}
+            cursor={"pointer"}
+          /> */}
+          {/* <a href="#">
           <Image
             boxSize="25px"
             objectFit="cover"
@@ -155,12 +184,13 @@ const Signup = () => {
             src="https://www.svgrepo.com/show/439171/github.svg"
             alt="fb"
           />
-        </a>
-      </Box>
-      <Button colorScheme="blue" mt={4} onClick={submitHandler} id="Register">
-        Register
-      </Button>
-    </Flex>
+        </a> */}
+        </Box>
+        <Button colorScheme="blue" mt={4} onClick={submitHandler} id="Register">
+          Register
+        </Button>
+      </Flex>
+    </>
   );
 };
 
