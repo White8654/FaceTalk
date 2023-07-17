@@ -45,6 +45,7 @@ import {
 import { color } from "framer-motion";
 //import { useToast } from "@chakra-ui/toast";
 const ENDPOINT = "https://facetalk.onrender.com/";
+//const ENDPOINT = "http://localhost:5000";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -129,6 +130,22 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const sendMessage = async (event) => {
     if (event.key === "Enter" && newMessage) {
       socket.emit("stop typing", selectedChat._id);
+      const randomId = Math.floor(Math.random() * 1000000);
+      const dummyMessage = {
+        _id: randomId,
+        chat: selectedChat,
+        content: newMessage,
+        createdAt: new Date().toISOString(),
+        isDeleted: [],
+        readBy: [],
+        sender: {
+          pic: user.pic,
+          _id: user._id,
+          name: user.name,
+        },
+      };
+      console.log(dummyMessage);
+      setMessages([...messages, dummyMessage]);
       try {
         const config = {
           headers: {
@@ -147,9 +164,21 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           config
         );
         console.log(data);
-        console.log("sending to socket...");
         socket.emit("new message", data);
-        setMessages([...messages, data]);
+        const dummyIndex = messages.findIndex(
+          (message) => message._id === randomId
+        );
+
+        // Replace the dummy message with the actual message received from the server
+        if (dummyIndex !== -1) {
+          const updatedMessages = [...messages];
+          updatedMessages[dummyIndex] = data;
+          setMessages(updatedMessages);
+        }
+
+        console.log("sending to socket...");
+
+        // setMessages([...messages, data]);
         const index = chats.findIndex((c) => c._id === selectedChat._id);
         if (index !== -1) {
           // Item found in chats, move it to the beginning
@@ -354,7 +383,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   //this.refs.nameInput.getInputDOMNode().focus();
 
   return (
-    <Box w="100%" h={"90%"}>
+    <Box w="100%" h={"92%"}>
       {" "}
       {emoji != 0 && <EmojiPicker />}
       {details && <Modalforcall />}
@@ -396,7 +425,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         {getSender(user, selectedChat.users)}
                         {istyping ? (
                           <Text
-                            color={"white"}
+                            color={"yellow"}
                             fontSize={"13px"}
                             fontWeight={"normal"}
                           >
@@ -406,7 +435,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                           getSenderFull(user, selectedChat.users).isOnline ===
                             true ? (
                           <Text
-                            color={"white"}
+                            color={"#03fc2c"}
                             fontSize={"13px"}
                             fontWeight={"normal"}
                           >
@@ -436,7 +465,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   ))}
               </Text>
             </Box>
-            <Box display={{ base: "none", md: "flex" }}>
+            <Box display={{ base: "none", md: "flex" }} marginTop={"7px"}>
               {selectedChat && selectedChat.isGroupChat === false && (
                 <i
                   class="fa-solid fa-phone fa-lg"

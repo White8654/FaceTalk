@@ -2,6 +2,8 @@ import { Box, Text } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/avatar";
 import { Tooltip } from "@chakra-ui/tooltip";
 import ScrollableFeed from "react-scrollable-feed";
+
+import "./styles.css";
 import {
   isLastMessage,
   isSameSender,
@@ -39,7 +41,7 @@ const ScrollableChat = ({ messages }) => {
                 maxWidth: "75%",
                 fontSize: m.content.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]/)
                   ? "40px"
-                  : "inherit",
+                  : "18px",
                 alignSelf: "center",
               }}
             >
@@ -59,10 +61,12 @@ const ScrollableChat = ({ messages }) => {
                   {m.sender.name}
                 </Text>
               )}
-              <Text style={{}}>{m.content}</Text>
-              <Text
+              <Text style={{ fontFamily: "roboto", fontWeight: "bold" }}>
+                {m.content}
+              </Text>
+              <div
+                className="date-text"
                 style={{
-                  fontSize: "9px",
                   color: m.content.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]/)
                     ? "white"
                     : "black",
@@ -75,7 +79,7 @@ const ScrollableChat = ({ messages }) => {
                   hour: "2-digit",
                   minute: "2-digit",
                 })}
-              </Text>
+              </div>
             </Box>
           </div>
         ))}
