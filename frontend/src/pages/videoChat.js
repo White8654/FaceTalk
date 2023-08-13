@@ -15,8 +15,8 @@ const Videochat = () => {
 
   useEffect(() => {
     const Mymeeting = async () => {
-      const appID = 1809040419;
-      const serverSecret = "bd43045243cf91e71df654a51ce78c19";
+      const appID = 127116646;
+      const serverSecret = "061ed9d4b70322274a3403236aa99be2";
       const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
         appID,
         serverSecret,

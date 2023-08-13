@@ -44,7 +44,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://facetalk.onrender.com",
+    origin: "https://facetalk-production.up.railway.app/",
     // credentials: true,
   },
 });

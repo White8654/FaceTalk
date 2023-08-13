@@ -44,7 +44,7 @@ function Homepage() {
           w="100%"
           fontWeight="bold"
         >
-          Messenger
+          FaceTalk
         </Text>
         <Tabs isFitted variant="soft-rounded">
           <TabList mb="1em">
