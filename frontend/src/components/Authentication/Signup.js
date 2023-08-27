@@ -4,7 +4,7 @@ import { Input } from "@chakra-ui/input";
 
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Flex, Box, Image } from "@chakra-ui/react";
 import GoogleAuth from "../../pages/googleAuth";
@@ -103,6 +103,12 @@ const Signup = () => {
       submitHandler();
     }
   };
+
+  useEffect(() => {
+    if (name && email && password) {
+      submitHandler();
+    }
+  }, [name, email, password]);
 
   return (
     <>

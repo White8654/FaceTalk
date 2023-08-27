@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@chakra-ui/button";
 
 import { Input } from "@chakra-ui/input";
@@ -81,10 +81,15 @@ const Login = () => {
     //setName(details.given_name + " " + details.family_name);
     setEmail(details.email);
     setPassword(details.sub);
+    if (email && password) submitHandler();
+  };
+
+  useEffect(() => {
     if (email && password) {
+      console.log("called");
       submitHandler();
     }
-  };
+  }, [email, password]);
 
   // document.getElementById("input").addEventListener("keyup", function (event) {
   //   // Number 13 is the "Enter" key on the keyboard
