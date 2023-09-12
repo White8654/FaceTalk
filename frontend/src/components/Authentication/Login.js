@@ -18,10 +18,9 @@ const Login = () => {
   const history = useNavigate();
 
   const [email, setEmail] = useState();
-  const [oemail, setoEmail] = useState();
 
   const [password, setPassword] = useState();
-  const [opassword, setoPassword] = useState();
+  const [auth, setAuth] = useState();
 
   const submitHandler = async () => {
     if (!email || !password) {
@@ -62,7 +61,7 @@ const Login = () => {
       localStorage.setItem("userInfo", JSON.stringify(data));
 
       history("/chats");
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -77,11 +76,12 @@ const Login = () => {
 
   const handleGoogleLoginSuccess = (credentialResponse) => {
     const details = jwt_decode(credentialResponse.credential);
-    console.log(details);
+    //console.log(details);
     //setName(details.given_name + " " + details.family_name);
     setEmail(details.email);
     setPassword(details.sub);
     if (email && password) submitHandler();
+    setAuth(!auth);
   };
 
   useEffect(() => {
@@ -89,7 +89,7 @@ const Login = () => {
       console.log("called");
       submitHandler();
     }
-  }, [email, password]);
+  }, [auth]);
 
   // document.getElementById("input").addEventListener("keyup", function (event) {
   //   // Number 13 is the "Enter" key on the keyboard

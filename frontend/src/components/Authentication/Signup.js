@@ -18,9 +18,10 @@ const Signup = () => {
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
-  const [oauth, setoAuth] = useState();
 
   const [password, setPassword] = useState();
+  const [auth, setAuth] = useState();
+
   const api = "https://api.quotable.io/quotes/random";
 
   const submitHandler = async () => {
@@ -67,7 +68,7 @@ const Signup = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
 
-      history("/setAvatar");
+      history("/verify");
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -79,6 +80,7 @@ const Signup = () => {
       });
     }
   };
+
   // document.getElementById("pass").addEventListener("keyup", function (event) {
   //   // Number 13 is the "Enter" key on the keyboard
   //   if (event.keyCode === 13) {
@@ -99,6 +101,7 @@ const Signup = () => {
     setName(details.given_name + " " + details.family_name);
     setEmail(details.email);
     setPassword(details.sub);
+    setAuth(!auth);
     if (name && email && password) {
       submitHandler();
     }
@@ -108,7 +111,7 @@ const Signup = () => {
     if (name && email && password) {
       submitHandler();
     }
-  }, [name, email, password]);
+  }, [auth]);
 
   return (
     <>
