@@ -12,7 +12,6 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
-        {/* <Route path="/verify" element={<EmailVerify />}></Route> */}
         <Route path="/chats" element={<Chatpage />}></Route>
         <Route path="/room/:roomId" element={<Videochat />}></Route>
         <Route path="/voice/:voiceId" element={<Voicechat />}></Route>
