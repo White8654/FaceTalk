@@ -68,7 +68,7 @@ const Signup = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
 
-      history("/verify");
+      history("/setAvatar");
     } catch (error) {
       toast({
         title: "Error Occured!",
