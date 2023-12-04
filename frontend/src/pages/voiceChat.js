@@ -15,8 +15,8 @@ const Voicechat = () => {
 
   useEffect(() => {
     const Mymeeting = async () => {
-      const appID = 482663997;
-      const serverSecret = "c9ba826e0a123656a135dffa2fc43c24";
+      const appID = 1407643831;
+      const serverSecret = "959335fb1edbe0a0ada7d3c57542fd82";
       const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
         appID,
         serverSecret,
