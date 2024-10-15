@@ -22,7 +22,7 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const [auth, setAuth] = useState();
 
-  const api = "https://api.quotable.io/quotes/random";
+ // const api = "https://api.quotable.io/quotes/random";
 
   const submitHandler = async () => {
     if (!name || !email || !password) {
@@ -38,9 +38,10 @@ const Signup = () => {
     }
 
     console.log(name, email, password);
-    const quote = await axios.get(`${api}`);
-    console.log(quote);
-    const about = quote.data[0].content;
+    //const quote = "Howdy!!";
+
+    //console.log(quote);
+    const about = "Howdy!!";
     console.log(about);
     try {
       const config = {
