@@ -163,7 +163,7 @@ const Signup = () => {
           onChange={(e) => setPassword(e.target.value)}
           id="pass"
         />
-        <Box mb={3} mt={3} display="flex" justifyContent={"center"}>
+        {/* <Box mb={3} mt={3} display="flex" justifyContent={"center"}>
           <GoogleOAuthProvider clientId="327729156972-u385vbit4lou36stv5f595ljhsdm1tpc.apps.googleusercontent.com">
             <GoogleLogin
               onSuccess={handleGoogleLoginSuccess}
@@ -172,36 +172,7 @@ const Signup = () => {
               }}
             />
           </GoogleOAuthProvider>
-          {/* Sign in with
-          <Image
-            boxSize="25px"
-            objectFit="cover"
-            ml={2}
-            mr={3}
-            src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-            alt="Google"
-            onClick={(e) => setAuth(e)}
-            cursor={"pointer"}
-          /> */}
-          {/* <a href="#">
-          <Image
-            boxSize="25px"
-            objectFit="cover"
-            mr={1}
-            src="https://www.svgrepo.com/show/299471/facebook.svg"
-            alt="fb"
-          />
-        </a>
-        <a href="#">
-          <Image
-            boxSize="25px"
-            objectFit="cover"
-            ml={2}
-            src="https://www.svgrepo.com/show/439171/github.svg"
-            alt="fb"
-          />
-        </a> */}
-        </Box>
+        </Box> */}
         <Button colorScheme="blue" mt={4} onClick={submitHandler} id="Register">
           Register
         </Button>

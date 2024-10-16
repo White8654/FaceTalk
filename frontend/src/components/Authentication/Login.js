@@ -135,7 +135,7 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
         id="input"
       />
-      <Box mb={3} mt={3} display="flex" justifyContent={"center"}>
+      {/* <Box mb={3} mt={3} display="flex" justifyContent={"center"}>
         <GoogleOAuthProvider clientId="327729156972-u385vbit4lou36stv5f595ljhsdm1tpc.apps.googleusercontent.com">
           <GoogleLogin
             onSuccess={handleGoogleLoginSuccess}
@@ -144,7 +144,7 @@ const Login = () => {
             }}
           />
         </GoogleOAuthProvider>
-      </Box>
+      </Box> */}
       <Button id="Login" colorScheme="blue" mt={4} onClick={submitHandler}>
         Login
       </Button>

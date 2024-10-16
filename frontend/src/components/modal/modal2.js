@@ -6,7 +6,9 @@ import io from "socket.io-client";
 import { ChatState } from "../../Context/ChatProvider";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-const ENDPOINT = "https://facetalk-production.up.railway.app/";
+//const ENDPOINT = "https://facetalk-production.up.railway.app/";
+const ENDPOINT = "https://facetalk-123.onrender.com/";
+
 var socket;
 
 const Modal3 = () => {
